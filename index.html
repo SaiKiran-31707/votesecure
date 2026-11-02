@@ -1,1 +1,235 @@
-"#votesecure" 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VoteSecure - Student Election</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>VoteSecure</h1>
+    <p>Student Council Election Tally System</p>
+</header>
+
+<nav>
+    <a href="#students">Students</a>
+    <a href="#candidates">Candidates</a>
+    <a href="#elections">Elections</a>
+    <a href="#vote">Cast Vote</a>
+    <a href="#results">Results</a>
+    <a href="#reports">Reports</a>
+</nav>
+
+<main>
+
+    <section class="intro">
+        <h2>Welcome to VoteSecure</h2>
+        <p>Manage student council elections easily.</p>
+
+        <div class="summary">
+            <div class="summary-box">
+                <h3 id="studentTotal">0</h3>
+                <p>Students</p>
+            </div>
+
+            <div class="summary-box">
+                <h3 id="candidateTotal">0</h3>
+                <p>Candidates</p>
+            </div>
+
+            <div class="summary-box">
+                <h3 id="electionTotal">0</h3>
+                <p>Elections</p>
+            </div>
+
+            <div class="summary-box">
+                <h3 id="voteTotal">0</h3>
+                <p>Votes</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Module -->
+    <section id="students" class="panel">
+        <h2>1. Student Module</h2>
+        <p>Register students for the election.</p>
+
+        <form id="studentForm">
+            <label>Student ID</label>
+            <input type="text" id="studentId" required>
+
+            <label>Student Name</label>
+            <input type="text" id="studentName" required>
+
+            <label>Department</label>
+            <input type="text" id="department" required>
+
+            <label>Academic Year</label>
+            <select id="studentYear" required>
+                <option value="">Select Year</option>
+                <option>1st Year</option>
+                <option>2nd Year</option>
+                <option>3rd Year</option>
+                <option>4th Year</option>
+            </select>
+
+            <button type="submit">Register Student</button>
+        </form>
+
+        <h3>Registered Students</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                </tr>
+            </thead>
+            <tbody id="studentTable"></tbody>
+        </table>
+    </section>
+
+    <!-- Candidate Module -->
+    <section id="candidates" class="panel">
+        <h2>2. Candidate Module</h2>
+        <p>Register nominated candidates.</p>
+
+        <form id="candidateForm">
+            <label>Candidate ID</label>
+            <input type="text" id="candidateId" required>
+
+            <label>Candidate Name</label>
+            <input type="text" id="candidateName" required>
+
+            <label>Department</label>
+            <input type="text" id="candidateDepartment" required>
+
+            <label>Position</label>
+            <input type="text" id="candidatePosition"
+            placeholder="Example: President" required>
+
+            <label>Manifesto</label>
+            <textarea id="manifesto" required></textarea>
+
+            <button type="submit">Nominate Candidate</button>
+        </form>
+
+        <h3>Nominated Candidates</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Position</th>
+                    <th>Manifesto</th>
+                </tr>
+            </thead>
+            <tbody id="candidateTable"></tbody>
+        </table>
+    </section>
+
+    <!-- Election Module -->
+    <section id="elections" class="panel">
+        <h2>3. Election Module</h2>
+        <p>Create and schedule elections.</p>
+
+        <form id="electionForm">
+            <label>Election ID</label>
+            <input type="text" id="electionId" required>
+
+            <label>Election Name</label>
+            <input type="text" id="electionName" required>
+
+            <label>Position</label>
+            <input type="text" id="electionPosition" required>
+
+            <label>Starting Date</label>
+            <input type="datetime-local" id="startDate" required>
+
+            <label>Ending Date</label>
+            <input type="datetime-local" id="endDate" required>
+
+            <button type="submit">Create Election</button>
+        </form>
+
+        <h3>Election Schedule</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="electionTable"></tbody>
+        </table>
+    </section>
+
+    <!-- Vote Tally Module -->
+    <section id="vote" class="panel">
+        <h2>4. Vote Tally Module</h2>
+
+        <form id="voteForm">
+            <label>Select Election</label>
+            <select id="voteElection" required></select>
+
+            <label>Student ID</label>
+            <select id="voterId" required></select>
+
+            <label>Select Candidate</label>
+            <select id="voteCandidate" required></select>
+
+            <button type="submit">Submit Vote</button>
+        </form>
+
+        <p class="note">
+            Each student can vote only once in an election.
+        </p>
+    </section>
+
+    <!-- Result Module -->
+    <section id="results" class="panel">
+        <h2>5. Result Module</h2>
+
+        <label>Select Election</label>
+        <select id="resultElection"></select>
+
+        <div id="resultArea">
+            Select an election to view results.
+        </div>
+    </section>
+
+    <!-- Search and Report Module -->
+    <section id="reports" class="panel">
+        <h2>6. Search and Report Module</h2>
+
+        <input type="text" id="searchBox"
+        placeholder="Search by student or candidate name or ID">
+
+        <div id="searchResults"></div>
+
+        <h3>Election Summary</h3>
+        <div id="reportArea"></div>
+    </section>
+
+</main>
+
+<footer>
+    <p>VoteSecure - Student Project</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+this is html code to build an web page, wait there is two more codes
